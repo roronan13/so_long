@@ -1,12 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_printf_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 17:56:46 by rpothier          #+#    #+#             */
-/*   Updated: 2024/06/24 17:56:47 by rpothier         ###   ########.fr       */
+/*   Created: 2024/01/19 10:44:52 by rpothier          #+#    #+#             */
+/*   Updated: 2024/01/19 11:25:14 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
+
+int	ft_printf_u(unsigned int n)
+{
+	int	nbr;
+
+	nbr = ft_putnbr_unsigned(n);
+	return (nbr);
+}
