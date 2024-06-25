@@ -1,7 +1,10 @@
 NAME		=	so_long
 
 SRCS		=	main.c\
-				so_long.c
+				so_long.c\
+				check_map.c\
+				get_next_line/get_next_line.c\
+				get_next_line/get_next_line_utils.c
 
 OBJS		=	$(SRCS:.c=.o)
 
@@ -33,7 +36,8 @@ $(FT_PRINTF)	:
 					$(MAKE_FT_PRINTF)
 
 $(NAME)		:	$(OBJS) | $(LIBFT) $(FT_PRINTF)
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF) ./MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+#				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF) ./MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm #
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF) ./MLX42/build/libmlx42.a -Iinclude -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib" -fsanitize=address -g3
 
 clean		:	
 				$(RM) $(OBJS)

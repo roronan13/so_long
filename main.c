@@ -85,4 +85,5 @@ void ft_hook(void* param)
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
-} */
+}
+ */
