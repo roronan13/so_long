@@ -6,7 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <MLX42/include/MLX42/MLX42.h>
+// #include <MLX42/include/MLX42/MLX42.h>
+#include "so_long.h"
 
 #define WIDTH 512
 #define HEIGHT 512
@@ -85,5 +86,4 @@ void ft_hook(void* param)
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
-}
- */
+} */

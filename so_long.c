@@ -1,20 +1,20 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpothier <ronanpothier@student.42.f    +#+  +:+       +#+        */
+/*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:56:46 by rpothier          #+#    #+#             */
-/*   Updated: 2024/06/26 00:01:22 by ronanpothie      ###   ########.fr       */
+/*   Updated: 2024/06/26 22:44:48 by rpothier         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
-#include "MLX42/include/MLX42/MLX42.h"
+// #include "MLX42/include/MLX42/MLX42.h"
 #include "so_long.h"
-#include "get_next_line/get_next_line.h"
-#include "get_next_line/get_next_line.c"
-#include "get_next_line/get_next_line_utils.c"
+// #include "get_next_line/get_next_line.h"
+// #include "get_next_line/get_next_line.c"
+// #include "get_next_line/get_next_line_utils.c"
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
