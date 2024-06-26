@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:22:13 by rpothier          #+#    #+#             */
-/*   Updated: 2024/02/23 15:21:42 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:36:55 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,7 @@ size_t	size_of_line(char *stash)
 	return (i + 1);
 }
 
-size_t	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
+/* void	*ft_calloc(size_t nmemb, size_t size)
 {
 	char	*ptr;
 	size_t	max;
@@ -71,4 +59,4 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	while (i < max)
 		ptr[i++] = '\0';
 	return (ptr);
-}
+} */

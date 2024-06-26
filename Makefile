@@ -36,8 +36,8 @@ $(FT_PRINTF)	:
 					$(MAKE_FT_PRINTF)
 
 $(NAME)		:	$(OBJS) | $(LIBFT) $(FT_PRINTF)
-#				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF) ./MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm #
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF) ./MLX42/build/libmlx42.a -Iinclude -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib" -fsanitize=address -g3
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF) ./MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm #
+#				$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(FT_PRINTF) ./MLX42/build/libmlx42.a -Iinclude -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib" -fsanitize=address -g3
 
 clean		:	
 				$(RM) $(OBJS)
