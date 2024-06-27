@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:56:46 by rpothier          #+#    #+#             */
-/*   Updated: 2024/06/27 20:20:20 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:23:48 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	int fd;
 	char *line;
 
-	(void)argc;
+	check_errors(argc, argv);
 	line_nbr = 0;
 	
 	fd = open(argv[1], O_RDONLY);
