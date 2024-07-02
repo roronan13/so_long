@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/02 15:39:01 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:53:51 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	**check_and_create_tab(char **argv)
 	line_len = ft_strlen(get_next_line(fd));
 	while (get_next_line(fd))
 		line_nbr++;
-	map_tab = malloc(size_of());
+		
+	map_tab = malloc(sizeof(char *) * line_nbr);
 	
 	ft_printf("line_nbr : %d\n", line_nbr);
 	ft_printf("line_len : %d\n", line_len);
@@ -34,7 +35,7 @@ char	**check_and_create_tab(char **argv)
 	
 	
 	close(fd);
-	
+	return (map_tab);
 }
 /* int line_number(char **argv)
 {
