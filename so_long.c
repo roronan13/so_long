@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:56:46 by rpothier          #+#    #+#             */
-/*   Updated: 2024/06/28 00:09:55 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:38:54 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 int	main(int argc, char **argv)
 {
 	check_errors(argc, argv);
-	check_map(argv);
+	//check_map(argv);
 	
 	int line_nbr;
 	int fd;
@@ -40,14 +40,15 @@ int	main(int argc, char **argv)
 	}
 
 	line = get_next_line(fd);
-	printf("%s", line);
+	// printf("%s", line);
 	while (line)
 	{
 		line_nbr++;
+		ft_printf("%s", line);
 		line = get_next_line(fd);
 	}
 	close (fd);
-	printf("line_nbr : %d\n", line_nbr);
+	printf("\nline_nbr : %d\n", line_nbr);
 
 
 	
