@@ -6,11 +6,54 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/02 17:14:31 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:59:07 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	number_of_line(char **argv)
+{
+	int	line_nbr;
+	int	fd;
+
+	line_nbr = 0;
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
+	while (get_next_line(fd))
+		line_nbr++;
+	close(fd);
+	return (line_nbr);
+}
+
+int	check_rectangle(char **argv)
+{
+	int		line_nbr;
+	int		line_len;
+	int		line_len_comp;
+	int		fd;
+
+	line_nbr = 0;
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
+	line_nbr = number_of_line(argv);
+	line_len = ft_strlen(get_next_line(fd));
+	while (line_nbr - 1)
+	{
+		line_len_comp = ft_strlen(get_next_line(fd));
+		if (line_len_comp != line_len)
+		{
+			close(fd);
+			return (1);
+		}
+		line_nbr--;
+	}
+	close(fd);
+	if ()
+	return (0);
+}
 
 char	**check_and_create_tab(char **argv)
 {
@@ -26,6 +69,8 @@ char	**check_and_create_tab(char **argv)
 	i = 0;
 	j = 0;
 	
+	
+
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
@@ -55,7 +100,6 @@ char	**check_and_create_tab(char **argv)
 		free(line);		
 		line = get_next_line(fd);
 	}
-	ft_printf("i : %d\n", i);
 	map_tab[i] = NULL;
 	
 	ft_printf("line_nbr : %d\n", line_nbr);
