@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_and_create_tab.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 19:46:06 by ronanpothie       #+#    #+#             */
-/*   Updated: 2024/07/02 14:59:54 by rpothier         ###   ########.fr       */
+/*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
+/*   Updated: 2024/07/02 15:39:01 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_map(char **argv)
+char	**check_and_create_tab(char **argv)
 {
-	int	line_nbr;
-	int	line_len;
-	int	fd;
+	int		line_nbr;
+	int		line_len;
+	int		fd;
+	char	**map_tab;
 
-	line_nbr = 0;
+	line_nbr = 1;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
+	line_len = ft_strlen(get_next_line(fd));
 	while (get_next_line(fd))
 		line_nbr++;
+	map_tab = malloc(size_of());
 	
 	ft_printf("line_nbr : %d\n", line_nbr);
-	
+	ft_printf("line_len : %d\n", line_len);
+
 	
 	
 	close(fd);

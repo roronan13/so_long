@@ -3,7 +3,7 @@ NAME		=	so_long
 SRCS		=	main.c\
 				so_long.c\
 				check_errors.c\
-				check_map.c\
+				check_and_create_tab.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c
 

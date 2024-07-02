@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:19:00 by rpothier          #+#    #+#             */
-/*   Updated: 2024/06/28 00:08:32 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:29:26 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 void	check_errors(int argc, char **argv);
 int	check_args(int argc);
 int	check_extension(char *name, char *ext);
+
+char	**check_and_create_tab(char **argv);
 
 int line_number(char **argv);
 
