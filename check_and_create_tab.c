@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/02 18:59:07 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:13:15 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ int	number_of_line(char **argv)
 	return (line_nbr);
 }
 
+int	size_of_first_line(char **argv)
+{
+	int	fd;
+	int	size;
+	
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
+	size = ft_strlen(get_next_line(fd));
+	close(fd);
+	return (size);
+}
+
 int	check_rectangle(char **argv)
 {
 	int		line_nbr;
@@ -40,7 +53,7 @@ int	check_rectangle(char **argv)
 		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
 	line_nbr = number_of_line(argv);
 	line_len = ft_strlen(get_next_line(fd));
-	while (line_nbr - 1)
+	while (line_nbr - 2)
 	{
 		line_len_comp = ft_strlen(get_next_line(fd));
 		if (line_len_comp != line_len)
@@ -50,8 +63,12 @@ int	check_rectangle(char **argv)
 		}
 		line_nbr--;
 	}
+	if (line_len != (int)ft_strlen(get_next_line(fd)) + 1)
+	{
+		close(fd);
+		return (1);
+	}
 	close(fd);
-	if ()
 	return (0);
 }
 
@@ -65,26 +82,21 @@ char	**check_and_create_tab(char **argv)
 	int		i;
 	int		j;
 
-	line_nbr = 1;
+	line_nbr = number_of_line(argv);
 	i = 0;
 	j = 0;
-	
-	
+	if (number_of_line(argv) <= 2)
+		exit((ft_printf("Error\nMap is too small !\n"), 1));
+	if (check_rectangle(argv))
+		exit((ft_printf("Error\nThis map is not a rectangle !\n"), 1));
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
-	line_len = ft_strlen(get_next_line(fd));
-	while (get_next_line(fd))
-		line_nbr++;
+	line_len = size_of_first_line(argv);
 		
 	map_tab = malloc(sizeof(char *) * (line_nbr + 1));
 
-	close(fd);
-	fd = open(argv[1], O_RDONLY);
-	/* if (fd == -1)
-		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
-		// free; */
 	line = get_next_line(fd);
 	while (line)
 	{
