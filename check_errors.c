@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_erros.c                                      :+:      :+:    :+:   */
+/*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:20:51 by rpothier          #+#    #+#             */
-/*   Updated: 2024/06/27 23:36:17 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:10:24 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,18 @@ int	check_extension(char *name, char *ext)
 		return (1);
 	else
 		return (0);
+}
+
+char	**ft_free_double(char **ptr)
+{
+	long unsigned int	i;
+
+	i = 0;
+	while (ptr[i])
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
+	return (NULL);
 }

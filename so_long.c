@@ -6,18 +6,11 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:56:46 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/02 15:29:10 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 00:50:13 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "MLX42/include/MLX42/MLX42.h"
 #include "so_long.h"
-// #include "get_next_line/get_next_line.h"
-// #include "get_next_line/get_next_line.c"
-// #include "get_next_line/get_next_line_utils.c"
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
@@ -25,37 +18,13 @@ int	main(int argc, char **argv)
 	check_errors(argc, argv);
 	map_tab = check_and_create_tab(argv);
 	
-/* 	int line_nbr;
-	int fd;
-	char *line;
-
-
-	
-	line_nbr = 0;
-	
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
+/* int i = 0;
+	while (map_tab[i])
 	{
-		printf("opening failed\n");
-		return (1);
+		ft_printf("%s", map_tab[i]);
+		i++;
 	}
+	ft_printf("%s", map_tab[0]);*/
 
-	line = get_next_line(fd);
-	// printf("%s", line);
-	while (line)
-	{
-		line_nbr++;
-		ft_printf("%s", line);
-		line = get_next_line(fd);
-	}
-	close (fd);
-	printf("\nline_nbr : %d\n", line_nbr); */
-
-
-	
-	
-	// fd = open(argv[1], O_RDWR);
-	// size = line_number(argv);
-	// ft_printf("size : %d\n", size);
 	return (0);
 }

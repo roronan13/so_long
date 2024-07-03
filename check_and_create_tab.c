@@ -6,23 +6,33 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/03 01:43:31 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 00:50:18 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	number_of_line(char **argv)
+int	number_of_line(char **argv, int fd_2)
 {
-	int	line_nbr;
-	int	fd;
+	int		line_nbr;
+	int		fd;
+	char	*line;
 
 	line_nbr = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
-	while (get_next_line(fd))
+	{
+		if (fd_2 != -1)
+			close(fd_2);
+		exit((perror("Error\nOpening map file failed\n"), 1));
+	}
+	line = get_next_line(fd);
+	while (line)
+	{
 		line_nbr++;
+		free(line);
+		line = get_next_line(fd);
+	}
 	close(fd);
 	return (line_nbr);
 }
@@ -54,7 +64,7 @@ int	check_rectangle(char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
-	line_nbr = number_of_line(argv);
+	line_nbr = number_of_line(argv, -1);
 	line_len = ft_strlen(get_next_line(fd));
 	while (line_nbr - 2)
 	{
@@ -75,25 +85,50 @@ int	check_rectangle(char **argv)
 	return (0);
 }
 
-char	**create_tab(char **argv, int line_nbr, int fd)
+char	**create_tab(char **argv)
 {
-	int		line_len;
 	char	**map_tab;
-	char	*line;
+	int		line_nbr;
+	// char	*line;
 	int		i;
-	int		j;
-	
+	int		fd;
+
 	i = 0;
-	j = 0;
-	line_len = size_of_first_line(argv, fd);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit((perror("Error\nOpening map file failed"), 1));
+	line_nbr = number_of_line(argv, fd);
+	printf("%d\n", line_nbr);
 	map_tab = malloc(sizeof(char *) * (line_nbr + 1));
 	if (!map_tab)
 	{
-		// close(fd); deja close dans l'autre dans if (!map_tab)
-		// perror
-		return (NULL);
+		close(fd);
+		perror("Error\nMalloc failed");
+		exit(errno);
 	}
-	line = get_next_line(fd);
+	while (line_nbr)
+	{
+	// printf("line : %s", line);
+		map_tab[i] = get_next_line(fd);
+			ft_printf("map tab -%d- : %s", i, map_tab[i]);
+		// free(line);
+		if (!map_tab[i])
+		{
+			ft_free_double(map_tab);
+			perror("%i - Error\nooooooooooooMalloc failed");
+			exit(errno);
+		}
+		// line = get_next_line(fd);
+		i++;
+		line_nbr--;
+	}
+	// map_tab[line_nbr] = NULL;
+	
+	return (map_tab);
+	
+
+	
+	/* line = get_next_line(fd);
 	while (line)
 	{
 		map_tab[i] = malloc(sizeof(char) * line_len);
@@ -116,81 +151,19 @@ char	**create_tab(char **argv, int line_nbr, int fd)
 		line = get_next_line(fd);
 	}
 	map_tab[i] = NULL;
-	return (map_tab);
+	return (map_tab); */
 }
 
 char	**check_and_create_tab(char **argv)
 {
-	int		line_nbr;
-	int		fd;
 	char	**map_tab;
-
-	line_nbr = number_of_line(argv);
-	if (line_nbr <= 2)
-		exit((ft_printf("Error\nMap is too small !\n"), 1));
-		
-	if (check_rectangle(argv))
-		exit((ft_printf("Error\nThis map is not a rectangle !\n"), 1));
-		
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
-	map_tab = create_tab(argv, line_nbr, fd);
+	
+	map_tab = create_tab(argv);
 	if (!map_tab)
 	{
-		close(fd);
+		perror("Error\nMalloc failed");
 		exit(errno);
 	}
-	close(fd);
-	
-	if (check_walls(argv))
-	{
-		// ft_free_tab map_tab
-		exit((ft_printf("Error\nMap is not surrounded by walls !\n"), 1));
-	}
 
-	
-	
 	return (map_tab);
 }
-
-	/* fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
-	line_len = size_of_first_line(argv);
-	
-	map_tab = malloc(sizeof(char *) * (line_nbr + 1));
-
-	line = get_next_line(fd);
-	while (line)
-	{
-		map_tab[i] = malloc(sizeof(char) * line_len);
-		while (j < line_len - 1)
-		{
-			map_tab[i][j] = line[j];
-			j++;
-		}
-		map_tab[i][j] = '\0';
-		j = 0;
-		i++;
-		free(line);		
-		line = get_next_line(fd);
-	}
-	map_tab[i] = NULL; */
-	
-	/* ft_printf("line_nbr : %d\n", line_nbr);
-	ft_printf("line_len : %d\n", line_len);
-
-	i = 0;
-	j = 0;
-	while (map_tab[i])
-	{
-		while(map_tab[i][j])
-		{
-			ft_printf("%c", map_tab[i][j]);
-			j++;
-		}
-		ft_printf("\n");
-		j = 0;
-		i++;
-	} */
