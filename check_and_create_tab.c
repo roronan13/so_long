@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 00:50:18 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 01:01:25 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	**create_tab(char **argv)
 {
 	char	**map_tab;
 	int		line_nbr;
-	// char	*line;
 	int		i;
 	int		fd;
 
@@ -98,7 +97,6 @@ char	**create_tab(char **argv)
 	if (fd == -1)
 		exit((perror("Error\nOpening map file failed"), 1));
 	line_nbr = number_of_line(argv, fd);
-	printf("%d\n", line_nbr);
 	map_tab = malloc(sizeof(char *) * (line_nbr + 1));
 	if (!map_tab)
 	{
@@ -106,24 +104,20 @@ char	**create_tab(char **argv)
 		perror("Error\nMalloc failed");
 		exit(errno);
 	}
-	while (line_nbr)
+	while (i < line_nbr)
 	{
-	// printf("line : %s", line);
 		map_tab[i] = get_next_line(fd);
-			ft_printf("map tab -%d- : %s", i, map_tab[i]);
-		// free(line);
 		if (!map_tab[i])
 		{
 			ft_free_double(map_tab);
-			perror("%i - Error\nooooooooooooMalloc failed");
+			close(fd);
+			perror("%i - Error\nMalloc failed");
 			exit(errno);
 		}
-		// line = get_next_line(fd);
 		i++;
-		line_nbr--;
 	}
-	// map_tab[line_nbr] = NULL;
-	
+	//map_tab[i] = NULL;
+	close(fd);
 	return (map_tab);
 	
 
