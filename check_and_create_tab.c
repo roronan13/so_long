@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 17:37:53 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:14:50 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,29 @@ char	**create_tab(char **argv, int line_nbr)
 	return (map_tab);
 }
 
-void	check_caracters(char **map_tab)
+void	check_wrong_caracters(char **map_tab)
 {
+	int	i;
+	int	j;
 	
+	i = 0;
+	while (map_tab[i])
+	{
+		j = 0;
+		while (map_tab[i][j])
+		{
+			if (map_tab[i][j] != '0' && map_tab[i][j] != '1' 
+			&& map_tab[i][j] != 'C' && map_tab[i][j] != 'P' 
+			&& map_tab[i][j] != 'E' && map_tab[i][j] != '\n')
+			{
+				ft_free_double(map_tab);
+				ft_printf("Error\nYou have wrong caracters in your map !\n");
+				exit(1);
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 char	**check_and_create_tab(char **argv)
@@ -149,8 +169,8 @@ char	**check_and_create_tab(char **argv)
 		exit(errno);
 	}
 	check_rectangle(map_tab);
+	check_wrong_caracters(map_tab);
 	check_walls(map_tab, line_nbr);
-	
 
 	return (map_tab);
 }
