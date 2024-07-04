@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 17:17:47 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:37:53 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,11 @@ char	**create_tab(char **argv, int line_nbr)
 	map_tab[i] = get_next_line(fd);
 	close(fd);
 	return (map_tab);
+}
+
+void	check_caracters(char **map_tab)
+{
+	
 }
 
 char	**check_and_create_tab(char **argv)
