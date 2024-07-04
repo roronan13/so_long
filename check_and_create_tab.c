@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 18:14:50 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:22:41 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,20 @@ void	check_wrong_caracters(char **map_tab)
 	}
 }
 
+void	check_unique_caracter(char **map_tab)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	k = 0;
+	while (map_tab[i])
+	{
+		
+	}
+}
+
 char	**check_and_create_tab(char **argv)
 {
 	char	**map_tab;
@@ -171,6 +185,7 @@ char	**check_and_create_tab(char **argv)
 	check_rectangle(map_tab);
 	check_wrong_caracters(map_tab);
 	check_walls(map_tab, line_nbr);
+	check_unique_caracter(map_tab);
 
 	return (map_tab);
 }
