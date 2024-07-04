@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 01:01:25 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 02:07:26 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,41 +111,14 @@ char	**create_tab(char **argv)
 		{
 			ft_free_double(map_tab);
 			close(fd);
-			perror("%i - Error\nMalloc failed");
+			perror("Error\nMalloc failed");
 			exit(errno);
 		}
 		i++;
 	}
-	//map_tab[i] = NULL;
+	map_tab[i] = get_next_line(fd);
 	close(fd);
 	return (map_tab);
-	
-
-	
-	/* line = get_next_line(fd);
-	while (line)
-	{
-		map_tab[i] = malloc(sizeof(char) * line_len);
-		if (!map_tab[i])
-		{
-			// ft_free_tab map_tab
-			free(line);
-			// perror
-			return (NULL);
-		}
-		while (j < line_len - 1)
-		{
-			map_tab[i][j] = line[j];
-			j++;
-		}
-		map_tab[i][j] = '\0';
-		j = 0;
-		i++;
-		free(line);		
-		line = get_next_line(fd);
-	}
-	map_tab[i] = NULL;
-	return (map_tab); */
 }
 
 char	**check_and_create_tab(char **argv)
