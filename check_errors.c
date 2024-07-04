@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:20:51 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 17:31:48 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:32:44 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,4 @@ int	check_extension(char *name, char *ext)
 		return (1);
 	else
 		return (0);
-}
-
-char	**ft_free_double(char **ptr)
-{
-	long unsigned int	i;
-
-	i = 0;
-	if (!ptr)
-		return (NULL);
-	while (ptr[i])
-	{
-		free(ptr[i]);
-		i++;
-	}
-	free(ptr);
-	return (NULL);
 }

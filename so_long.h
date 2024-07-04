@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:19:00 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 16:26:53 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:44:26 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,22 @@
 # include <stdio.h>
 
 void	check_errors(int argc, char **argv);
-int	check_args(int argc);
-int	check_extension(char *name, char *ext);
-char	**ft_free_double(char **ptr);
+int		check_args(int argc);
+int		check_extension(char *name, char *ext);
 
 char	**check_and_create_tab(char **argv);
-void	check_rectangle(char **argv);
+char	**create_tab(char **argv, int line_nbr);
 
-int	number_of_line(char **argv, int fd_2);
+void	check_rectangle(char **argv);
+void	check_wrong_caracters(char **map_tab);
+void	check_walls(char **map_tab, int line_nbr);
+
+void	check_caracters(char **map_tab);
+int		check_player(char **map_tab);
+int		check_collectible(char **map_tab);
+int		check_exit(char **map_tab);
+
+char	**ft_free_double(char **ptr);
+int		number_of_line(char **argv, int fd_2);
 
 #endif

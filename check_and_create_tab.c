@@ -6,95 +6,30 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 19:25:26 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:39:49 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	number_of_line(char **argv, int fd_2)
+char	**check_and_create_tab(char **argv)
 {
+	char	**map_tab;
 	int		line_nbr;
-	int		fd;
-	char	*line;
-
-	line_nbr = 0;
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
+	
+	line_nbr = number_of_line(argv, -1);
+	map_tab = create_tab(argv, line_nbr);
+	if (!map_tab)
 	{
-		if (fd_2 != -1)
-			close(fd_2);
-		exit((perror("Error\nOpening map file failed\n"), 1));
+		perror("Error\nMalloc failed");
+		exit(errno);
 	}
-	line = get_next_line(fd);
-	while (line)
-	{
-		line_nbr++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (line_nbr);
-}
+	check_rectangle(map_tab);
+	check_wrong_caracters(map_tab);
+	check_walls(map_tab, line_nbr);
+	check_caracters(map_tab);
 
-void	check_rectangle(char **map_tab)
-{
-	int	line_len;
-	int	i;
-
-	i = 0;
-	line_len = ft_strlen(map_tab[i]);
-	while (map_tab[i + 1])
-	{
-		if ((int)ft_strlen(map_tab[i]) != line_len)
-		{
-			ft_free_double(map_tab);
-			ft_printf("Error\nThis map is not a rectangle !\n");
-			exit (1);
-		}
-		i++;
-	}
-	if ((int)ft_strlen(map_tab[i]) != line_len - 1)
-	{
-		ft_free_double(map_tab);
-		ft_printf("Error\nThis map is not a rectangle !\n");
-		exit (1);
-	}
-}
-
-void	check_walls(char **map_tab, int line_nbr)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map_tab[i])
-	{
-		if (i == 0 || i == line_nbr - 1)
-		{
-			j = 0;
-			while (map_tab[i][j] && map_tab[i][j] != '\n')
-			{
-				if (map_tab[i][j] != '1')
-				{
-					ft_free_double(map_tab);
-					ft_printf("Error\nThis map is not surrounded by walls !\n");
-					exit(1);
-				}
-				j++;
-			}
-		}
-		else
-		{
-			if (map_tab[i][0] != '1' || map_tab[i][ft_strlen(map_tab[i]) - 2] != '1')
-			{
-				ft_free_double(map_tab);
-				ft_printf("Error\nThis map is not surrounded by walls !\n");
-				exit(1);
-			}
-		}
-		i++;
-	}
+	return (map_tab);
 }
 
 char	**create_tab(char **argv, int line_nbr)
@@ -128,138 +63,5 @@ char	**create_tab(char **argv, int line_nbr)
 	}
 	map_tab[i] = get_next_line(fd);
 	close(fd);
-	return (map_tab);
-}
-
-void	check_wrong_caracters(char **map_tab)
-{
-	int	i;
-	int	j;
-	
-	i = 0;
-	while (map_tab[i])
-	{
-		j = 0;
-		while (map_tab[i][j])
-		{
-			if (map_tab[i][j] != '0' && map_tab[i][j] != '1' 
-			&& map_tab[i][j] != 'C' && map_tab[i][j] != 'P' 
-			&& map_tab[i][j] != 'E' && map_tab[i][j] != '\n')
-			{
-				ft_free_double(map_tab);
-				ft_printf("Error\nYou have wrong caracters in your map !\n");
-				exit(1);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-
-int	check_collectible(char **map_tab)
-{
-	int	i;
-	int	j;
-	int	c;
-
-	i = 0;
-	c = 0;
-	while (map_tab[i])
-	{
-		j = 0;
-		while (map_tab[i][j])
-		{
-			if (map_tab[i][j] == 'C')
-				c++;
-			j++;
-		}
-		i++;
-	}
-	return (c);
-}
-
-int	check_player(char **map_tab)
-{
-	int	i;
-	int	j;
-	int	p;
-
-	i = 0;
-	p = 0;
-	while (map_tab[i])
-	{
-		j = 0;
-		while (map_tab[i][j])
-		{
-			if (map_tab[i][j] == 'P')
-				p++;
-			j++;
-		}
-		i++;
-	}
-	return (p);
-}
-
-int	check_exit(char **map_tab)
-{
-	int	i;
-	int	j;
-	int	e;
-
-	i = 0;
-	e = 0;
-	while (map_tab[i])
-	{
-		j = 0;
-		while (map_tab[i][j])
-		{
-			if (map_tab[i][j] == 'E')
-				e++;
-			j++;
-		}
-		i++;
-	}
-	return (e);
-}
-void	check_caracters(char **map_tab)
-{
-	if (check_player(map_tab) != 1)
-	{
-		ft_free_double(map_tab);
-		ft_printf("Error\nYou must have ONE player in your map !\n");
-		exit(1);
-	}
-	if (check_collectible(map_tab) < 1)
-	{
-		ft_free_double(map_tab);
-		ft_printf("Error\nYou must have at least one collectible in your map !\n");
-		exit(1);
-	}
-	if (check_exit(map_tab) != 1)
-	{
-		ft_free_double(map_tab);
-		ft_printf("Error\nYou must have ONE exit in your map !\n");
-		exit(1);
-	}
-}
-
-char	**check_and_create_tab(char **argv)
-{
-	char	**map_tab;
-	int		line_nbr;
-	
-	line_nbr = number_of_line(argv, -1);
-	map_tab = create_tab(argv, line_nbr);
-	if (!map_tab)
-	{
-		perror("Error\nMalloc failed");
-		exit(errno);
-	}
-	check_rectangle(map_tab);
-	check_wrong_caracters(map_tab);
-	check_walls(map_tab, line_nbr);
-	check_caracters(map_tab);
-
 	return (map_tab);
 }
