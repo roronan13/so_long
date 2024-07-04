@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 18:50:13 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:25:26 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,19 +156,91 @@ void	check_wrong_caracters(char **map_tab)
 	}
 }
 
-void	check_unique_caracter(char **map_tab)
+
+int	check_collectible(char **map_tab)
 {
 	int	i;
 	int	j;
 	int	c;
-	int	e;
+
+	i = 0;
+	c = 0;
+	while (map_tab[i])
+	{
+		j = 0;
+		while (map_tab[i][j])
+		{
+			if (map_tab[i][j] == 'C')
+				c++;
+			j++;
+		}
+		i++;
+	}
+	return (c);
+}
+
+int	check_player(char **map_tab)
+{
+	int	i;
+	int	j;
 	int	p;
 
 	i = 0;
-	k = 0;
+	p = 0;
 	while (map_tab[i])
 	{
-		
+		j = 0;
+		while (map_tab[i][j])
+		{
+			if (map_tab[i][j] == 'P')
+				p++;
+			j++;
+		}
+		i++;
+	}
+	return (p);
+}
+
+int	check_exit(char **map_tab)
+{
+	int	i;
+	int	j;
+	int	e;
+
+	i = 0;
+	e = 0;
+	while (map_tab[i])
+	{
+		j = 0;
+		while (map_tab[i][j])
+		{
+			if (map_tab[i][j] == 'E')
+				e++;
+			j++;
+		}
+		i++;
+	}
+	return (e);
+}
+void	check_caracters(char **map_tab)
+{
+	if (check_player(map_tab) != 1)
+	{
+		ft_free_double(map_tab);
+		ft_printf("Error\nYou must have ONE player in your map !\n");
+		exit(1);
+	}
+	if (check_collectible(map_tab) < 1)
+	{
+		ft_free_double(map_tab);
+		ft_printf("Error\nYou must have at least one collectible in your map !\n");
+		exit(1);
+	}
+	if (check_exit(map_tab) != 1)
+	{
+		ft_free_double(map_tab);
+		ft_printf("Error\nYou must have ONE exit in your map !\n");
+		exit(1);
 	}
 }
 
@@ -187,7 +259,7 @@ char	**check_and_create_tab(char **argv)
 	check_rectangle(map_tab);
 	check_wrong_caracters(map_tab);
 	check_walls(map_tab, line_nbr);
-	check_unique_caracter(map_tab);
+	check_caracters(map_tab);
 
 	return (map_tab);
 }
