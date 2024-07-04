@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 18:22:41 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:50:13 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,9 @@ void	check_unique_caracter(char **map_tab)
 {
 	int	i;
 	int	j;
-	int	k;
+	int	c;
+	int	e;
+	int	p;
 
 	i = 0;
 	k = 0;
