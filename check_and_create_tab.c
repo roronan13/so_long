@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 02:52:56 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:28:10 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,52 +37,29 @@ int	number_of_line(char **argv, int fd_2)
 	return (line_nbr);
 }
 
-int	size_of_first_line(char **argv, int fd)
+void	check_rectangle(char **map_tab)
 {
-	int	fd_2;
-	int	size;
-	
-	fd_2 = open(argv[1], O_RDONLY);
-	if (fd_2 == -1)
-	{
-		close(fd);
-		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
-	}
-	size = ft_strlen(get_next_line(fd_2));
-	close(fd_2);
-	return (size);
-}
+	int	line_len;
+	int	i;
 
-int	check_rectangle(char **argv)
-{
-	int		line_nbr;
-	int		line_len;
-	int		line_len_comp;
-	int		fd;
-
-	line_nbr = 0;
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		exit((ft_printf("Error\nOpening map file failed !\n"), 1));
-	line_nbr = number_of_line(argv, -1);
-	line_len = ft_strlen(get_next_line(fd));
-	while (line_nbr - 2)
+	i = 0;
+	line_len = ft_strlen(map_tab[i]);
+	while (map_tab[i + 1])
 	{
-		line_len_comp = ft_strlen(get_next_line(fd));
-		if (line_len_comp != line_len)
+		if ((int)ft_strlen(map_tab[i]) != line_len)
 		{
-			close(fd);
-			return (1);
+			ft_free_double(map_tab);
+			ft_printf("Error\nThis map is not a rectangle !\n");
+			exit (1);
 		}
-		line_nbr--;
+		i++;
 	}
-	if (line_len != (int)ft_strlen(get_next_line(fd)) + 1)
+	if ((int)ft_strlen(map_tab[i]) != line_len - 1)
 	{
-		close(fd);
-		return (1);
+		ft_free_double(map_tab);
+		ft_printf("Error\nThis map is not a rectangle !\n");
+		exit (1);
 	}
-	close(fd);
-	return (0);
 }
 
 char	**create_tab(char **argv)
@@ -129,6 +106,8 @@ char	**check_and_create_tab(char **argv)
 		perror("Error\nMalloc failed");
 		exit(errno);
 	}
+	check_rectangle(map_tab);
+	
 
 	return (map_tab);
 }
