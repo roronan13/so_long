@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:26:31 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/05 20:29:16 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/05 20:36:53 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	check_path(char **map_tab)
 
 	find_player(map_tab, &x, &y);
 	ft_printf("x : %d\ny : %d\n", x, y);
+	
 	
 	int i = 0;
 	while (map_tab[i])
