@@ -6,6 +6,7 @@ SRCS		=	main.c\
 				check_and_create_tab.c\
 				checks_1.c\
 				checks_2.c\
+				check_path.c\
 				utils.c\
 				get_next_line/get_next_line.c\
 				get_next_line/get_next_line_utils.c
