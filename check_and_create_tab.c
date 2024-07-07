@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/05 20:16:12 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:24:55 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,12 @@ char	**check_and_create_tab(char **argv)
 	check_wrong_caracters(map_tab);
 	check_walls(map_tab, line_nbr);
 	check_caracters(map_tab);
-	/* if (check_path(map_tab))
+	if (check_path(map_tab))
 	{
 		ft_free_double(map_tab);
-		ft_printf("Error\nThere is no valid path !\n");
 		exit(1);
-	} */
-	check_path(map_tab);
+	}
 		
-	
 	return (map_tab);
 }
 
