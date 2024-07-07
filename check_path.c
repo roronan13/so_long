@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:26:31 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 17:11:33 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:20:05 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	check_path(char **map_tab, int line_nbr)
 		perror("Error\nMalloc failed");
 		return (1);
 	}
-	
 	find_player(map_tab, &x, &y);
 	flood_fill(map_cpy, x, y);
 	if (check_final_map(map_cpy))
