@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:19:00 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/05 20:17:29 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:13:03 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int		check_player(char **map_tab);
 int		check_collectible(char **map_tab);
 int		check_exit(char **map_tab);
 
-int		check_path(char **map_tab);
+int		check_path(char **map_tab, int line_nbr);
+char	**copy_map(char **map_tab, int line_nbr);
+int	check_final_map(char **map_cpy);
 void	find_player(char **map_tab, int *x, int *y);
 int	flood_fill(char **map_tab, int x, int y);
 

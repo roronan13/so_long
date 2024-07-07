@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 16:24:55 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:50:54 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**check_and_create_tab(char **argv)
 	check_wrong_caracters(map_tab);
 	check_walls(map_tab, line_nbr);
 	check_caracters(map_tab);
-	if (check_path(map_tab))
+	if (check_path(map_tab, line_nbr))
 	{
 		ft_free_double(map_tab);
 		exit(1);

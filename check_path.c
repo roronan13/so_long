@@ -6,29 +6,26 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:26:31 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 16:26:00 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:11:33 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_path(char **map_tab)
+int	check_path(char **map_tab, int line_nbr)
 {
 	int		x;
 	int		y;
 	char	**map_cpy;
 
-	find_player(map_tab, &x, &y);
-	ft_printf("x : %d\ny : %d\n", x, y);
-	
-	int i = 0;
-	while (map_tab[i])
+	map_cpy = copy_map(map_tab, line_nbr);	
+	if (!map_cpy)
 	{
-		ft_printf("%s", map_tab[i]);
-		i++;
+		perror("Error\nMalloc failed");
+		return (1);
 	}
-	ft_printf("\n%s\n", map_tab[i]);
 	
+	find_player(map_tab, &x, &y);
 	flood_fill(map_cpy, x, y);
 	if (check_final_map(map_cpy))
 	{
@@ -38,6 +35,34 @@ int	check_path(char **map_tab)
 	}
 	ft_free_double(map_cpy);
 	return (0);
+}
+
+char	**copy_map(char **map_tab, int line_nbr)
+{
+	char	**map_cpy;
+	int		i;
+	int		j;
+
+	i = 0;
+	map_cpy = malloc(sizeof(char *) * (line_nbr + 1));
+	if (!map_cpy)
+		return (NULL);
+	while (map_tab[i])
+	{
+		j = 0;
+		map_cpy[i] = malloc(sizeof(char) * (ft_strlen(map_tab[i]) + 1));
+		if (!map_cpy[i])
+			return (ft_free_double(map_cpy), NULL);
+		while (map_tab[i][j])
+		{
+			map_cpy[i][j] = map_tab[i][j];
+			j++;
+		}
+		map_cpy[i][j] = '\0';
+		i++;
+	}
+	map_cpy[i] = NULL;
+	return (map_cpy);
 }
 
 int	check_final_map(char **map_cpy)
