@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:58:56 by rpothier          #+#    #+#             */
-/*   Updated: 2024/06/26 20:23:41 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:28:50 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include <unistd.h>
 # include <stdarg.h>
-
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 int		ft_printf(const char *object, ...);
 int		ft_printf_c(int c);

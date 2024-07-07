@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:34:54 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 20:39:53 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:26:44 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ void	check_wrong_caracters(char **map_tab)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (map_tab[i])
 	{
 		j = 0;
 		while (map_tab[i][j])
 		{
-			if (map_tab[i][j] != '0' && map_tab[i][j] != '1' 
-			&& map_tab[i][j] != 'C' && map_tab[i][j] != 'P' 
+			if (map_tab[i][j] != '0' && map_tab[i][j] != '1'
+			&& map_tab[i][j] != 'C' && map_tab[i][j] != 'P'
 			&& map_tab[i][j] != 'E' && map_tab[i][j] != '\n')
 			{
 				ft_free_double(map_tab);

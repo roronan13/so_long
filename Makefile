@@ -1,7 +1,6 @@
 NAME		=	so_long
 
-SRCS		=	main.c\
-				so_long.c\
+SRCS		=	so_long.c\
 				check_errors.c\
 				check_and_create_tab.c\
 				checks_1.c\

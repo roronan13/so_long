@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 18:18:15 by rpothier          #+#    #+#             */
-/*   Updated: 2024/06/26 20:20:12 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:29:04 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 char	*get_next_line(int fd);
 char	*fill_stash_w_read(int fd, char **stash, ssize_t nbr_read);

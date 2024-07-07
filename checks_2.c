@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:38:20 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 20:39:17 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:18:45 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	check_caracters(char **map_tab)
 	if (check_collectible(map_tab) < 1)
 	{
 		ft_free_double(map_tab);
-		ft_printf("Error\nYou must have at least one collectible in your map !\n");
+		ft_printf("Error\nYou must have at least one \
+		collectible in your map !\n");
 		exit(1);
 	}
 	if (check_exit(map_tab) != 1)

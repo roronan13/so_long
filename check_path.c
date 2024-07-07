@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:26:31 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 18:18:51 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:19:34 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_path(char **map_tab, int line_nbr)
 	int		y;
 	char	**map_cpy;
 
-	map_cpy = copy_map(map_tab, line_nbr);	
+	map_cpy = copy_map(map_tab, line_nbr);
 	if (!map_cpy)
 	{
 		perror("Error\nMalloc failed");
