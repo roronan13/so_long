@@ -6,14 +6,14 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:19:00 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 18:57:43 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 21:48:03 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "MLX42/include/MLX42/MLX42.h"
+# include ".MLX42/include/MLX42/MLX42.h"
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
@@ -24,6 +24,10 @@
 
 # define WIN_WIDTH 500
 # define WIN_HEIGHT 500
+# define UP 0
+# define DOWN 1
+# define LEFT 2
+# define RIGHT 3
 
 typedef struct s_game
 {
@@ -36,6 +40,7 @@ typedef struct s_game
 	char			**map;
 	unsigned int	slot_width;
 	unsigned int	slot_height;
+	int				count_move;
 }	t_game;
 
 void	check_errors(int argc, char **argv);

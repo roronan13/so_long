@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:34:54 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 18:24:01 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:39:53 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	check_rectangle(char **map_tab)
 
 	i = 0;
 	line_len = ft_strlen(map_tab[i]);
+	if (line_len > 30)
+		exit((ft_free_double(map_tab), \
+		ft_printf("Error\nmap too big.\n"), 1));
 	while (map_tab[i + 1])
 	{
 		if ((int)ft_strlen(map_tab[i]) != line_len)
@@ -61,6 +64,7 @@ void	check_wrong_caracters(char **map_tab)
 		i++;
 	}
 }
+
 void	check_walls(char **map_tab, int line_nbr)
 {
 	int	i;
@@ -75,8 +79,8 @@ void	check_walls(char **map_tab, int line_nbr)
 			while (map_tab[i][j] && map_tab[i][j] != '\n')
 			{
 				if (map_tab[i][j] != '1')
-					exit((ft_printf("Error:\nmap is not surrounded by walls\n"),
-						ft_free_double(map_tab), 1));
+					exit((ft_printf("Error\nNot surrounded by walls !\n"), \
+					ft_free_double(map_tab), 1));
 				j++;
 			}
 		}
@@ -84,8 +88,8 @@ void	check_walls(char **map_tab, int line_nbr)
 		{
 			if (map_tab[i][0] != '1'
 				|| map_tab[i][ft_strlen(map_tab[i]) - 2] != '1')
-				exit((ft_printf("Error:\nmap is not surrounded by walls\n"),
-					ft_free_double(map_tab), 1));
+				exit((ft_printf("Error\nNot surrounded by walls !\n"), \
+				ft_free_double(map_tab), 1));
 		}
 	}
 }

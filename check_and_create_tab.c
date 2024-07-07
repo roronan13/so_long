@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 18:07:57 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 21:36:05 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	**check_and_create_tab(char **argv)
 	int		line_nbr;
 	
 	line_nbr = number_of_line(argv);
+	if (line_nbr > 30)
+		exit((ft_putstr_fd("Error\nmap too big.", 2), 1));
 	map_tab = create_tab(argv, line_nbr);
 	if (!map_tab)
 	{
@@ -33,7 +35,6 @@ char	**check_and_create_tab(char **argv)
 		ft_free_double(map_tab);
 		exit(1);
 	}
-		
 	return (map_tab);
 }
 
