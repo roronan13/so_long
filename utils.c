@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:32:19 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 20:35:15 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:14:21 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**ft_free_double(char **ptr)
 	return (NULL);
 }
 
-int	number_of_line(char **argv, int fd_2)
+int	number_of_line(char **argv)
 {
 	int		line_nbr;
 	int		fd;
@@ -37,12 +37,10 @@ int	number_of_line(char **argv, int fd_2)
 	line_nbr = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		if (fd_2 != -1)
-			close(fd_2);
 		exit((perror("Error\nOpening map file failed\n"), 1));
-	}
 	line = get_next_line(fd);
+	if (!line)
+		exit((perror("Error: \na problem occured with gnl"), close(fd), 1));
 	while (line)
 	{
 		line_nbr++;

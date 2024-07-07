@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:34:54 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/04 20:37:30 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:24:01 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	check_walls(char **map_tab, int line_nbr)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (map_tab[i])
+	i = -1;
+	while (map_tab[++i])
 	{
 		if (i == 0 || i == line_nbr - 1)
 		{
@@ -75,23 +75,17 @@ void	check_walls(char **map_tab, int line_nbr)
 			while (map_tab[i][j] && map_tab[i][j] != '\n')
 			{
 				if (map_tab[i][j] != '1')
-				{
-					ft_free_double(map_tab);
-					ft_printf("Error\nThis map is not surrounded by walls !\n");
-					exit(1);
-				}
+					exit((ft_printf("Error:\nmap is not surrounded by walls\n"),
+						ft_free_double(map_tab), 1));
 				j++;
 			}
 		}
 		else
 		{
-			if (map_tab[i][0] != '1' || map_tab[i][ft_strlen(map_tab[i]) - 2] != '1')
-			{
-				ft_free_double(map_tab);
-				ft_printf("Error\nThis map is not surrounded by walls !\n");
-				exit(1);
-			}
+			if (map_tab[i][0] != '1'
+				|| map_tab[i][ft_strlen(map_tab[i]) - 2] != '1')
+				exit((ft_printf("Error:\nmap is not surrounded by walls\n"),
+					ft_free_double(map_tab), 1));
 		}
-		i++;
 	}
 }

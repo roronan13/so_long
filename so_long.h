@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:19:00 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 17:13:03 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:57:43 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <stdio.h>
+
+# define WIN_WIDTH 500
+# define WIN_HEIGHT 500
+
+typedef struct s_game
+{
+	mlx_t			*mlx;
+	mlx_image_t		*player;
+	mlx_image_t		*wall;
+	mlx_image_t		*exit;
+	mlx_image_t		*floor;
+	mlx_image_t		*collectible;
+	char			**map;
+	unsigned int	slot_width;
+	unsigned int	slot_height;
+}	t_game;
 
 void	check_errors(int argc, char **argv);
 int		check_args(int argc);
@@ -40,11 +56,13 @@ int		check_exit(char **map_tab);
 
 int		check_path(char **map_tab, int line_nbr);
 char	**copy_map(char **map_tab, int line_nbr);
-int	check_final_map(char **map_cpy);
+int		check_final_map(char **map_cpy);
 void	find_player(char **map_tab, int *x, int *y);
-int	flood_fill(char **map_tab, int x, int y);
+int		flood_fill(char **map_tab, int x, int y);
 
 char	**ft_free_double(char **ptr);
-int		number_of_line(char **argv, int fd_2);
+int		number_of_line(char **argv);
+
+int		start_mlx(char **map, char **argv);
 
 #endif

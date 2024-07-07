@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 16:50:54 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:07:57 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**check_and_create_tab(char **argv)
 	char	**map_tab;
 	int		line_nbr;
 	
-	line_nbr = number_of_line(argv, -1);
+	line_nbr = number_of_line(argv);
 	map_tab = create_tab(argv, line_nbr);
 	if (!map_tab)
 	{
@@ -40,22 +40,17 @@ char	**check_and_create_tab(char **argv)
 char	**create_tab(char **argv, int line_nbr)
 {
 	char	**map_tab;
-	// int		line_nbr;
 	int		i;
 	int		fd;
 
-	i = 0;
+	i = -1;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		exit((perror("Error\nOpening map file failed"), 1));
-	// line_nbr = number_of_line(argv, fd);
 	map_tab = malloc(sizeof(char *) * (line_nbr + 1));
 	if (!map_tab)
-	{
-		close(fd);
-		return (NULL);
-	}
-	while (i < line_nbr)
+		return (close(fd), NULL);
+	while (++i < line_nbr)
 	{
 		map_tab[i] = get_next_line(fd);
 		if (!map_tab[i])
@@ -64,7 +59,6 @@ char	**create_tab(char **argv, int line_nbr)
 			close(fd);
 			return (NULL);
 		}
-		i++;
 	}
 	map_tab[i] = get_next_line(fd);
 	close(fd);

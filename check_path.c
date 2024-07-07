@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:26:31 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 17:20:05 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:18:51 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ int	flood_fill(char **map_cpy, int x, int y)
 	if (map_cpy[y][x] == '1' || map_cpy[y][x] == 'F')
 		return (0);
 	map_cpy[y][x] = 'F';
-	if (flood_fill(map_cpy, x - 1, y) || flood_fill(map_cpy, x, y - 1) || flood_fill(map_cpy, x + 1, y) || flood_fill(map_cpy, x, y + 1))
+	if (flood_fill(map_cpy, x - 1, y) || flood_fill(map_cpy, x, y - 1)
+		|| flood_fill(map_cpy, x + 1, y) || flood_fill(map_cpy, x, y + 1))
 		return (1);
 	return (0);
 }
@@ -104,9 +105,7 @@ void	find_player(char **map_tab, int *x, int *y)
 	{
 		j = 0;
 		while (map_tab[i][j] && map_tab[i][j] != 'P')
-		{
 			j++;
-		}
 		if (map_tab[i][j] == 'P')
 		{
 			*y = i;
