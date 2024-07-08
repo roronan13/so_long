@@ -6,11 +6,11 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:38:20 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 22:18:45 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:59:56 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	check_caracters(char **map_tab)
 {

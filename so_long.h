@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:19:00 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 21:48:03 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:20:49 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,21 @@ typedef struct s_game
 	int				count_move;
 }	t_game;
 
+char	**ft_free_double(char **ptr);
+int		number_of_line(char **argv);
+
+char	**check_and_create_tab(char **argv);
+char	**create_tab(char **argv, int line_nbr);
+
 void	check_errors(int argc, char **argv);
 int		check_args(int argc);
 int		check_extension(char *name, char *ext);
 
-char	**check_and_create_tab(char **argv);
-char	**create_tab(char **argv, int line_nbr);
+int		check_path(char **map_tab, int line_nbr);
+char	**copy_map(char **map_tab, int line_nbr);
+int		check_final_map(char **map_cpy);
+void	find_player(char **map_tab, int *x, int *y);
+int		flood_fill(char **map_tab, int x, int y);
 
 void	check_rectangle(char **argv);
 void	check_wrong_caracters(char **map_tab);
@@ -59,15 +68,13 @@ int		check_player(char **map_tab);
 int		check_collectible(char **map_tab);
 int		check_exit(char **map_tab);
 
-int		check_path(char **map_tab, int line_nbr);
-char	**copy_map(char **map_tab, int line_nbr);
-int		check_final_map(char **map_cpy);
-void	find_player(char **map_tab, int *x, int *y);
-int		flood_fill(char **map_tab, int x, int y);
-
-char	**ft_free_double(char **ptr);
-int		number_of_line(char **argv);
-
 int		start_mlx(char **map, char **argv);
+void	create_image(t_game *game_info, mlx_image_t **to_change, char *png_name);
+int		init_image(t_game *game_info);
+int		draw_good_image(t_game *game_info, char slot, int x, int y);
+
+void	move(mlx_key_data_t key, void *param);
+int		check_collisions(t_game *game_info, int dir);
+int		check_player_and_collectible(t_game *game_info);
 
 #endif

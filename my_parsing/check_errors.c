@@ -6,11 +6,11 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:20:51 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 17:54:38 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:59:41 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	check_errors(int argc, char **argv)
 {

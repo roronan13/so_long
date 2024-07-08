@@ -6,11 +6,11 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:34:54 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/07 22:26:44 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:59:50 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	check_rectangle(char **map_tab)
 {

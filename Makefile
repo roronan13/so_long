@@ -1,15 +1,16 @@
 NAME		=	so_long
 
 SRCS		=	so_long.c\
-				check_errors.c\
-				check_and_create_tab.c\
-				checks_1.c\
-				checks_2.c\
-				check_path.c\
 				utils.c\
+				my_parsing/check_and_create_tab.c\
+				my_parsing/check_errors.c\
+				my_parsing/checks_1.c\
+				my_parsing/checks_2.c\
+				my_parsing/check_path.c\
+				my_mlx/mlx_init.c\
+				my_mlx/mlx_init_2.c\
 				get_next_line/get_next_line.c\
-				get_next_line/get_next_line_utils.c\
-				src/mlx_init.c
+				get_next_line/get_next_line_utils.c
 
 OBJS		=	$(SRCS:.c=.o)
 
