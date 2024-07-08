@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:21:14 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/08 13:59:34 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:51:42 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**check_and_create_tab(char **argv)
 
 	line_nbr = number_of_line(argv);
 	if (line_nbr > 30)
-		exit((ft_putstr_fd("Error\nmap too big.", 2), 1));
+		exit((ft_printf("Error\nMap is too long !\n"), 1));
 	map_tab = create_tab(argv, line_nbr);
 	if (!map_tab)
 	{

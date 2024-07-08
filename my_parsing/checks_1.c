@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 20:34:54 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/08 13:59:50 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:46:53 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_rectangle(char **map_tab)
 	line_len = ft_strlen(map_tab[i]);
 	if (line_len > 30)
 		exit((ft_free_double(map_tab), \
-		ft_printf("Error\nmap too big.\n"), 1));
+		ft_printf("Error\nMap is too large !\n"), 1));
 	while (map_tab[i + 1])
 	{
 		if ((int)ft_strlen(map_tab[i]) != line_len)
