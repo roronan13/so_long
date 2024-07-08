@@ -6,24 +6,24 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 18:27:13 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/08 14:28:45 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:56:30 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	start_mlx(char **map, char **argv)
+int	start_mlx(char **map_tab, char **argv)
 {
 	t_game	game_info;
 
-	if (!map || !*map)
+	if (!map_tab || !*map_tab)
 		return (-1);
-	game_info.map = map;
+	game_info.map = map_tab;
 	game_info.count_move = 0;
 	game_info.mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "so_long", false);
 	if (!game_info.mlx)
 		return (-1);
-	game_info.slot_width = WIN_WIDTH / (ft_strlen(map[0]) - 1);
+	game_info.slot_width = WIN_WIDTH / (ft_strlen(map_tab[0]) - 1);
 	game_info.slot_height = WIN_HEIGHT / number_of_line(argv);
 	create_image(&game_info, &game_info.player, "./my_mlx/assets/player.png");
 	create_image(&game_info, &game_info.wall, "./my_mlx/assets/wall.png");
@@ -39,12 +39,12 @@ int	start_mlx(char **map, char **argv)
 	return (0);
 }
 
-void	create_image(t_game *game_info, mlx_image_t **to_change, char *png_name)
+void	create_image(t_game *game_info, mlx_image_t **to_change, char *path)
 {
 	mlx_texture_t	*texture;
 
-	texture = mlx_load_png(png_name);
-	png_name++;
+	texture = mlx_load_png(path);
+	path++;
 	if (!texture)
 		return (ft_free_double(game_info->map), \
 		mlx_terminate(game_info->mlx), exit(1));

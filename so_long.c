@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:56:46 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/08 13:33:35 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:14:41 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ int	main(int argc, char **argv)
 
 	check_errors(argc, argv);
 	map_tab = check_and_create_tab(argv);
-	start_mlx(map_tab, argv);
+	if (start_mlx(map_tab, argv) == -1)
+	{
+		ft_free_double(map_tab);
+		return (1);
+	}
 	ft_free_double(map_tab);
 	return (0);
 }

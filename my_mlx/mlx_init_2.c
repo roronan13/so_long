@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:45:57 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/08 13:59:11 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:50:20 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ int	check_player_and_collectible(t_game *game_info)
 		&& game_info->player->instances[0].y == game_info->exit->instances[0].y
 		&& !is_collectible_visible)
 		return (ft_free_double(game_info->map), mlx_terminate(game_info->mlx),
-			exit(1), 0);
+			exit(0), 0);
 	return (0);
 }

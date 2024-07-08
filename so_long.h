@@ -6,7 +6,7 @@
 /*   By: rpothier <rpothier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 17:19:00 by rpothier          #+#    #+#             */
-/*   Updated: 2024/07/08 14:20:49 by rpothier         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:56:53 by rpothier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		check_collectible(char **map_tab);
 int		check_exit(char **map_tab);
 
 int		start_mlx(char **map, char **argv);
-void	create_image(t_game *game_info, mlx_image_t **to_change, char *png_name);
+void	create_image(t_game *game_info, mlx_image_t **to_change, char *path);
 int		init_image(t_game *game_info);
 int		draw_good_image(t_game *game_info, char slot, int x, int y);
 
